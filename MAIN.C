@@ -9,9 +9,9 @@
 
 #include "C:\CPROJECT\SETTINGS.H"	// this file contains include(s), struct(s), definition of constants like true, false, filePath and eoarr variable
 #include "C:\CPROJECT\FUNCS.H"		// other functions are in this file
-#include "C:\CPROJECT\MENUS.H"		// munu functions like menu_main() are in this file
+#include "C:\CPROJECT\MENUS.H"		// menu functions like menu_main() are in this file
 
-void sell();	/* This function is for creating and managing a new sale factor */
+void sell();	/* This function is for creating and managing a new sale Invoice */
 void list();	/* This function will show all records in main array on screen */
 void create();	/* This function appends a new record to main array */
 void edit();	/* This function will edit an existing record */
@@ -47,11 +47,11 @@ void main()/* This is Main function. This function will executed on program star
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-void sell()/* This function is for creating and managing a new sale factor */
+//////////////////////////////////////////////////////////////////////////////
+void sell()/* This function is for creating and managing a new sale Invoice */
 {
 	unsigned long long sum=0;
-	struct product factor[100];
+	struct product invoice[100];
 	unsigned int code,count=0;
 	int eofac=0,i=0,blnFound,blnRun=true,index;
 
@@ -59,30 +59,30 @@ void sell()/* This function is for creating and managing a new sale factor */
 	{
 		blnFound=false;
 		clrscr();
-		puts("\t\t\tNew Sale Factor\n\n\n");
+		puts("\t\t\tNew Sale Invoice\n\n\n");
 		puts("Code \t\t Name \t\t Price \n");
 		for(i=0;i<eofac;i++)
 		{
-			if(factor[i].blnInclude==true)
+			if(invoice[i].blnInclude==true)
 			{
-				printf("%u \t\t %s \t\t %llu \n",factor[i].code,factor[i].name,factor[i].price);
+				printf("%u \t\t %s \t\t %llu \n",invoice[i].code,invoice[i].name,invoice[i].price);
 				blnFound=true;
 			}
 		}
 		if(blnFound==false)
-			puts("There are no any products factored yet...\n\n");
+			puts("There are no any products in this invoice...\n\n");
 
 
-		puts("Enter code of product to append to factor (0 for end): ");	scanf("%u",&code); // Get a new code
+		puts("Enter code of product to append to invoice (0 for end): ");	scanf("%u",&code); // Get a new code
 		if(code!=0)
 		{
 			index=getIndexByCode(code);
 			if(index!=false)
 			{
-						factor[eofac].blnInclude=	true				;		// take this record into account
-						factor[eofac].code		=	arrMain[index].code	;		// Put code into factor array
-				strcpy(	factor[eofac].name		,	arrMain[index].name	);		// Put name into factor array
-						factor[eofac].price		=	arrMain[index].price;		// Put price into factor array
+						invoice[eofac].blnInclude=	true				;		// take this record into account
+						invoice[eofac].code		=	arrMain[index].code	;		// Put code into invoice array
+				strcpy(	invoice[eofac].name		,	arrMain[index].name	);		// Put name into invoice array
+						invoice[eofac].price		=	arrMain[index].price;		// Put price into invoice array
 				eofac++;
 				puts("Added, Press any key to continue...");
 			}
@@ -90,31 +90,31 @@ void sell()/* This function is for creating and managing a new sale factor */
 				puts("Not found, Press any key to continue...");
 		}
 		else
-			blnRun=false;	// stop editing factor
+			blnRun=false;	// stop editing Invoice
 		getch(); // wait to see results
 	}
 	while(blnRun==true);
 
 	clrscr();
-	puts("\t\t\tSale Factor for Print\n\n\n");	// Title of page
+	puts("\t\t\tSale Invoice for Print\n\n\n");	// Title of page
 	puts("Code \t\t Name \t\t Price \n");		// Table Header
 
 	if( !(eofac==0) )
 	{
 		for(i=0;i<eofac;i++)
 		{
-			if(factor[i].blnInclude==true)
+			if(invoice[i].blnInclude==true)
 			{
-				printf("%u \t\t %s \t\t %llu \n",factor[i].code,factor[i].name,factor[i].price);
-				sum+=factor[i].price;
+				printf("%u \t\t %s \t\t %llu \n",invoice[i].code,invoice[i].name,invoice[i].price);
+				sum+=invoice[i].price;
 				count++;
 			}
 		}
 
-		printf("\n\n Number of products in this factor: %i",count);
+		printf("\n\n Number of products in this Invoice: %i",count);
 		printf("\n Sum of Prices: %llu",sum);
 	}else
-		puts("There are no any records in this factor...");
+		puts("There are no any records in this Invoice...");
 	getch();
 }
 
