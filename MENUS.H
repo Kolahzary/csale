@@ -18,7 +18,7 @@ int menu_main() /* This function shows Main Menu and returns number of choice */
 	clrscr(); // Clear Screen
 
 	// Show Menu
-	puts("1. New Sale(+factor)\n");
+	puts("1. New Sale(+Invoice)\n");
 	puts("2. List all products\n");
 	puts("3. Add new product\n");
 	puts("4. Edit a product\n");
