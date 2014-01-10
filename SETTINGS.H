@@ -1,9 +1,9 @@
 /*
- *	Authors: Shadman Kolahzary and Houshyar Mohammady
+ *	Authors: Shadman Kolahzary
  *	File: SETTINGS.H
  *	Date: 2013/05/12
  *	Language: C
- *	Assignment: first term final project
+ *	Assignment: Advanced C Programming Project for University
  *	Description: simple program in c language to managing products and sales in a shop
  */
 
